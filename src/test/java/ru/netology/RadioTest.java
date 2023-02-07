@@ -255,7 +255,7 @@ public class RadioTest {
 
         Radio radio = new Radio();
 
-        radio.setVolumeLevel(11);
+        radio.setVolumeLevel(101);
 
         int expected = 0;
         int actual = radio.getVolumeLevel();
@@ -264,7 +264,7 @@ public class RadioTest {
     }
 
     @Test
-    public void AddSoundToFirstVolume(){   //Прибавить звук к первому верхнему значению
+    public void AddSoundToFirstVolume() {   //Прибавить звук к первому верхнему значению
         Radio radio = new Radio();
         radio.setVolumeLevel(0);
 
@@ -277,7 +277,7 @@ public class RadioTest {
     }
 
     @Test
-    public void AddSoundToSecondVolume(){   //Прибавить звук ко второму верхнему значению
+    public void AddSoundToSecondVolume() {   //Прибавить звук ко второму верхнему значению
         Radio radio = new Radio();
         radio.setVolumeLevel(1);
 
@@ -291,46 +291,46 @@ public class RadioTest {
 
 
     @Test
-    public void AddSoundToMiddleValue(){   //Прибавить звук среднему значению
+    public void AddSoundToMiddleValue() {   //Прибавить звук среднему значению
         Radio radio = new Radio();
-        radio.setVolumeLevel(5);
+        radio.setVolumeLevel(50);
 
         radio.AddSound();
 
-        int expected = 6;
+        int expected = 51;
         int actual = radio.getVolumeLevel();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void AddSoundToPenultimateLowValue (){   //Прибавить звук к предпоследнему нижнему значению
+    public void AddSoundToPenultimateLowValue() {   //Прибавить звук к предпоследнему нижнему значению
         Radio radio = new Radio();
-        radio.setVolumeLevel(9);
+        radio.setVolumeLevel(99);
 
         radio.AddSound();
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getVolumeLevel();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void AddSoundToLastLowValue (){   //Прибавить звук к последнему нижнему значению
+    public void AddSoundToLastLowValue() {   //Прибавить звук к последнему нижнему значению
         Radio radio = new Radio();
-        radio.setVolumeLevel(10);
+        radio.setVolumeLevel(100);
 
         radio.AddSound();
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getVolumeLevel();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void TurnDownTheMinimumVolume(){ //Убавить минимальную громкость
+    public void TurnDownTheMinimumVolume() { //Убавить минимальную громкость
         Radio radio = new Radio();
         radio.setVolumeLevel(0);
 
@@ -344,7 +344,7 @@ public class RadioTest {
 
 
     @Test
-    public void DecreaseSecondMinimumVolume(){ //Убавить вторую минимальную громкость
+    public void DecreaseSecondMinimumVolume() { //Убавить вторую минимальную громкость
         Radio radio = new Radio();
         radio.setVolumeLevel(1);
 
@@ -358,41 +358,58 @@ public class RadioTest {
 
 
     @Test
-    public void TurnDownTheMiddleVolume(){ //Убавить среднюю громкость
+    public void TurnDownTheMiddleVolume() { //Убавить среднюю громкость
         Radio radio = new Radio();
-        radio.setVolumeLevel(5);
+        radio.setVolumeLevel(50);
 
         radio.ReduceSound();
 
-        int expected = 4;
+        int expected = 49;
         int actual = radio.getVolumeLevel();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void TurnDownTheVolumeOfTheSecondLowerValue(){ //Убавить громкость второго нижнего значения
+    public void TurnDownTheVolumeOfTheSecondLowerValue() { //Убавить громкость второго нижнего значения
         Radio radio = new Radio();
-        radio.setVolumeLevel(9);
+        radio.setVolumeLevel(99);
 
         radio.ReduceSound();
 
-        int expected = 8;
+        int expected = 98;
         int actual = radio.getVolumeLevel();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void TurnDownTheMaximumVolume(){ //Убавить максимальную громкость
+    public void TurnDownTheMaximumVolume() { //Убавить максимальную громкость
         Radio radio = new Radio();
-        radio.setVolumeLevel(10);
+        radio.setVolumeLevel(100);
 
         radio.ReduceSound();
 
-        int expected = 9;
+        int expected = 99;
         int actual = radio.getVolumeLevel();
 
         Assertions.assertEquals(expected, actual);
+    }
+
+
+    @Test
+    public void testRadioStationNumber() {
+        Radio rad = new Radio(10);
+
+        Assertions.assertEquals(9, rad.getMaxStationNumber());
+        Assertions.assertEquals(0, rad.getMinStationNumber());
+    }
+
+    @Test
+    public void testVolume() {
+        Radio rad = new Radio();
+
+        Assertions.assertEquals(0, rad.getMinVolumeLevel());
+        Assertions.assertEquals(100, rad.getMaxVolumeLevel());
     }
 }
