@@ -1,18 +1,38 @@
 package ru.netology;
 
 public class Radio {
-    private int stationNumber;
-    private int volumeLevel;
+    private int minStationNumber = 0;
+    private int maxStationNumber = 9;
+    private int stationNumber = minStationNumber;
+    private int minVolumeLevel = 0;
+    private int maxVolumeLevel = 100;
+    private int volumeLevel = minVolumeLevel;
+
+    public Radio(int maxStationNumber) {
+        this.maxStationNumber = maxStationNumber - 1;
+    }
+
+    public Radio() {
+
+    }
 
     public int getStationNumber() {
         return stationNumber;
     }
 
+    public int getMinStationNumber() {
+        return minStationNumber;
+    }
+
+    public int getMaxStationNumber() {
+        return maxStationNumber;
+    }
+
     public void setStationNumber(int stationNumber) {
-        if (stationNumber < 0) {
+        if (stationNumber < minStationNumber) {
             return;
         }
-        if (stationNumber > 9) {
+        if (stationNumber > maxStationNumber) {
             return;
         }
         this.stationNumber = stationNumber;
@@ -22,11 +42,19 @@ public class Radio {
         return volumeLevel;
     }
 
+    public int getMinVolumeLevel() {
+        return minVolumeLevel;
+    }
+
+    public int getMaxVolumeLevel() {
+        return maxVolumeLevel;
+    }
+
     public void setVolumeLevel(int volumeLevel) {
-        if (volumeLevel < 0) {
+        if (volumeLevel < minVolumeLevel) {
             return;
         }
-        if (volumeLevel > 10) {
+        if (volumeLevel > maxVolumeLevel) {
             return;
         }
         this.volumeLevel = volumeLevel;
@@ -49,17 +77,17 @@ public class Radio {
     }
 
     public void AddSound() {
-        if (volumeLevel < 10) {
+        if (volumeLevel < maxVolumeLevel) {
             volumeLevel = volumeLevel + 1;
         } else {
-            volumeLevel = 10;
+            volumeLevel = 100;
         }
     }
 
 
-    public void ReduceSound(){
+    public void ReduceSound() {
         if (volumeLevel > 0) {
-            volumeLevel = volumeLevel -1;
+            volumeLevel = volumeLevel - 1;
         } else {
             volumeLevel = 0;
         }
